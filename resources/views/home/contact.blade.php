@@ -21,7 +21,7 @@
 
                         </div>
                         <div class="message">
-                            <label for="body">Scrivi qui i tuoi dubbi
+                            <label for="body">Scrivi qui
                                 <textarea id="body"> test</textarea></label>
                         </div>
                     </div>
