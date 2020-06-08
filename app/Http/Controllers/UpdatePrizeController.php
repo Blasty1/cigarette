@@ -101,15 +101,28 @@ class UpdatePrizeController extends Controller
         //elimino l'intestazione del fle
         function get_file($path_file){
             $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($path_file); 
-        
+            
             // Store data from the activeSheet to the varibale 
             // in the form of Array 
             $file=$spreadsheet->getActiveSheet();
-         
+            $file->SetCellValue('A2','');
+            $file->SetCellValue('B1','');
+            
+            for($x=1; $x < $file->getHighestRow(); $x++){
+                $CellA = $file->getCell('A' . $x)->getValue();
+                if(!$CellA){
+                    $test1[]= $x;
+                                                }
+
+            }
+            $file->removeRow(1);
+
+            
+            
 
             $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
             $writer->save($path_file);
-        
+
         }
 
         //ottengo gli ultimi prezzi

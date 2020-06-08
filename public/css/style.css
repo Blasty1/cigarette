@@ -18,7 +18,7 @@ button{
     font-family: 'Roboto Mono', monospace;
 }
 nav {
-    flex: 0.7;
+    flex: 1.5;
 
 
 }
@@ -53,7 +53,7 @@ footer{
 }
 .alert-div{
     width: 50%;
-    height:25%;
+    height:fit-content;
     border: 1px solid black;
     animation: mymove 5s infinite;
     margin: auto;
@@ -241,8 +241,9 @@ article{
 .form-user input, .form-user select{
     display:block;
     margin: 1em;
+    margin-left:auto;
+    margin-right:auto;
     width: 60vh;
-    height: 6vh;
     padding: 1em;
     background-color: white;
   
@@ -252,8 +253,11 @@ article{
     font-weight: 400;
     padding:1em;
 }
+
+.title{
+    text-align: center;
+}
 .wrapper{
-    width: 80%;
     margin: auto;
     margin-top: 1em;
     position: relative;
@@ -398,7 +402,6 @@ article{
         display:block;
         margin: 1em;
         width: 40vh;
-        height: 5vh;
         padding: 1em;
         background-color: white;
       
@@ -429,4 +432,9 @@ article{
     }
    
 
+}
+@media screen and (max-width: 800px){
+    .logo-container img{
+        height: 80%;
+    }
 }
