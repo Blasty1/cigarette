@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+@import 'variable';
+@import 'modal-centr';
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+
+    
+
+}
+
+.box-button{
+    flex:1;
+}
+.logo-in{
+    margin-top:9vh;
+    margin-right: 5vh;
+}
+
+.box-image{
+    flex:1;
+    display: flex;
+    justify-content: center;
+}
+#home-button{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 100vh;
+    
+    
+}
+
+
+.box{
+    border-radius:1em ;
+    flex:0.5;
+    margin: 2em;
+    height: 20vh;
+    text-align: center;
+    padding: 1em;
+    transform: translateY(35%);
+    font-family: 'Ubuntu Condensed', sans-serif;
+    cursor: pointer;
+
+    background: $button-color;
+}
+.box:hover{
+    background-color: $hide-button-color;
+    .text-explain{
+        color:$hide-text-color;
+    }
+}
+.text-explain{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color:$text-color;
+}
+.box h1{
+    font-size: 2rem;
+    padding-bottom: 1rem;
+}
+.box p{
+    font-size: 0.9rem;
+}
+
+
+.fascia-on{
+    display: flex;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+}
+.tendina{
+    margin: 4%;
+    flex: 1;
+    height: 80%;
+    background-color: white;
+    box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 1);
+    .content{
+        height:4vh;
+        border-bottom: 1px #cfcdcd solid;
+    }
+    overflow: scroll;
+    &::-webkit-scrollbar{
+        width:0.2em;
+    }    
+    &::-webkit-scrollbar-thumb{
+        background: linear-gradient(#c60000,white);
+    }
+    
+
+}
+
+.head-search{
+    width: 100%;
+    height:5vh;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    background-color: $button-color;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.title{
+    font-size: 1.5rem;
+}
+#impostazione{
+    background-color: #F8F8F8;
+}
+.image-search img{
+    margin-left: 0.5em;
+    width: 3vh;
+}
+
+
+@media screen and (max-width: 1024px){
+    .box{
+        height: 25vh;
+        transform: translateY(20%);
+        
+    }
+
+    .logo-in img{
+        height: 85%;
+    }
+    
+    
+}
+@media screen and (max-height: 700px){
+    .box{
+        height: 25vh;
+        transform: translateY(20%);
+        
+    }
+
+    .logo-in img{
+        height: 90%;
+    }
+    
+    
+}
+
+
+@media screen and (max-width: 800px){
+
+    .box{
+        transform: translateY(5%);
+        width: 70%;
+        margin: auto;
+        margin-top: 1em;
+    }
+    .box-3{
+        margin-bottom: 1em;
+    }
+    .logo-in img{
+        height: 70%;
+    }
+
+}
+
+
+
+@media screen and (max-width: 500px){
+    html{
+       font-size: 48%;
+    }
+    #home-button{
+        flex-direction: row;
+    }
+    .box{
+        height: 14vh;
+    }
+
+    .logo-in{
+        img{
+            height: 40%;
+        }
+
+        margin-top: 5vh;
+
+    }
+
+}
+
+@media screen and(max-width : 300px){
+
+    .logo-in{
+        margin-left: 1vh;
+        img{
+            height: 30%;
+        }
+    }
+}

@@ -16,9 +16,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','surname','Nazione','Provincia','Città','name_of_industry','last_activity'
+        'name', 'email', 'password','surname','Nazione','Provincia','Città','id_industry','last_activity','id_role'
     ];
   
+    public function sells()
+    {
+        return $this->hasMany('App\Sell', 'id', 'id_user');
+    }
+
+    public function industries()
+    {
+        return $this->hasMany('App\Industry', 'id_industry', 'id');
+    }
+
+    public function roles()
+    {
+        return $this->hasOne('App\Role', 'id_role', 'id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

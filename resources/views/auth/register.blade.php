@@ -1,10 +1,29 @@
 @extends('layouts.layout_pre')
 
+
+
 @section('content')
-<main>
+
+<!-- finestra modale -->
+<div class="modal">
+    <div class="alert-div">
+        <div class="header-title">
+            <h2 class="form-title">Vuoi registrare la tua attività?</h2>
+            <div class="close">
+                <button onclick='close_modal()'>&times</button>
+            </div>
+        </div>
+        <div class="content">
+            <p>Se sei un dipendente il tuo account ti arriverà via email tra pochissimo, non devi registrati. Se sei invece un imprenditori e necessiti dei nostri servizi basta registrarti e poi indicare l'email dei tuoi dipendenti che accederanno ad una sola parte del sito.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<main id="register">
     <div class="wrapper">
         <div class="form-user">
-
             <form method="post" action="{{route('register')}}" class="form-entry">
                 @csrf
                 <div class="title">
@@ -276,10 +295,10 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <input type="text" class="input" name="Città" placeholder="Città">
-                @error('name_of_industry')
+                @error('id_industry')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <input type="text" class="input" name="name_of_industry" placeholder="Noma della tua Azienda/Attività">
+                <input type="text" class="input" name="id_industry" placeholder="Noma della tua Azienda/Attività">
                 @error('password')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -299,4 +318,5 @@
 
 
 </main>
+
 @endsection

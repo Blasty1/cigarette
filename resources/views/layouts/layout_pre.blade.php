@@ -7,9 +7,11 @@
     <title>Test</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/welcome.js"> </script>
 </head>
 
 <body>
+
     <header>
         <div class="logo-container">
             <a href="{{route('welcome')}}"><img src="/img/logo.png" alt="logo"></a>
@@ -43,6 +45,7 @@
             <p>Sito creato da Bryan per info chiedere all'email: ichigoplayer18@gmail.com</p>
         </div>
         <footer> -->
-</body>
+
+    </body>
 
 </html>

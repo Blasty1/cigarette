@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $is_first_time=\App\Stock::where('id_industry',\Auth::user()->id_industry)->first() ? True : False;
+
+        return view('home',[
+            'is_first' => $is_first_time
+        ]);
     }
 }

@@ -27,3 +27,8 @@ Route::get('/contact-us', function(){
 })->name('contact');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/contabilità','HomeController@index')->name('contabilita');
+Route::get('/impostazioni','StockController@impostazione')->name('impostazioni');
+Route::get('/cassa','HomeController@index')->name('cassa');
+

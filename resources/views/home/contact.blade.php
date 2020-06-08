@@ -21,16 +21,18 @@
 
                         </div>
                         <div class="message">
-                            <label for="body">Scrivi qui
-                                <textarea id="body"> test</textarea></label>
+                            <div class="body-content">
+                                <label for="body">Scrivi qui</label>
+                                    <textarea id="body"> test</textarea>
+                            </div>
                         </div>
                     </div>
 
                     <input type="submit" value="invia" class="contact-submit">
                 </form>
 
-            </input>
-        </div>
+                </input>
+            </div>
     </section>
 </main>
 

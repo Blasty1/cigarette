@@ -1,9 +1,8 @@
 @extends('layouts.layout_pre')
 @section('content')
-<script src="/js/about.js"> </script>
 <main class="about">
     <div class="freccia-sxt">
-        <img src="/img/freccia.png" alt="">
+        <img src="/img/freccia.png" alt="" onclick="indietro(this)">
     </div>
     <section class="presentation-about">
         <article id='article1' style="display:flex" class="article-about">

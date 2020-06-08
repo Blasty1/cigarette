@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'Nazione' => ['required','string','max:2'],
             'Provincia' => ['required','string','max:255'],
             'Città' => ['required','string','max:255'],
-            'name_of_industry' => ['required','string','max:255']
+            'id_industry' => ['required','string','max:255']
             
         ]);
     }
@@ -70,6 +70,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
+        // Creo un ambiente dedicato alla tabaccheria del cliente
+        $id=\App\Industry::create([
+            'name' => preg_replace("/[^A-Za-z0-9\-\']/", '', $data['id_industry'])
+        ]);
+
+       //creo il profilo dell'utente
         return User::create([
             'name' => preg_replace("/[^A-Za-z0-9\-\']/", '', $data['name']),
             'email' => $data['email'],
@@ -78,7 +85,8 @@ class RegisterController extends Controller
             'Nazione' => preg_replace("/[^A-Za-z0-9\-\']/", '', $data['Nazione']),
             'Provincia' => preg_replace("/[^A-Za-z0-9\-\']/", '', $data['Provincia']),
             'Città' => preg_replace("/[^A-Za-z0-9\-\']/", '', $data['Città']),
-            'name_of_industry' => preg_replace("/[^A-Za-z0-9\-\']/", '', $data['name_of_industry'])
+            'id_industry' => $id->id,
+            'id_role' => \App\Role::where('Role','proprietario')->get()[0]->id
 
         ]);
     }
