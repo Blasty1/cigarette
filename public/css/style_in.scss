@@ -121,6 +121,19 @@
     width: 3vh;
 }
 
+.tabella_prodotti{
+    color: black;
+    
+
+    width: 100%;
+}
+
+.tabella_prodotti th{
+    
+    padding: 1.5em;
+    padding-bottom:0.5em;
+    border-bottom: 1px solid black;
+}
 
 @media screen and (max-width: 1024px){
     .box{

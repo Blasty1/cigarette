@@ -34,8 +34,9 @@
                     <h2 class="title">
                             Sigarette che hai in tabaccheria
                     </h2>
-                    <img src="/img/plus.png" alt="Aggiungi oggetto al catalogo" class="setup_icon" onclick="open_modal('add','Sigarette','le')">
-                    <img src="/img/ingrandisci.png" alt="Aggiungi oggetto al catalogo" class="setup_icon" onclick="open_modal('view','Sigarette','le')">
+                    
+                    <img src="/img/plus.png" alt="Aggiungi oggetto al catalogo" class="setup_icon" onclick="open_modal('add','Sigarette','le',{{json_encode($sigarette_totali)}})">
+                    <img src="/img/ingrandisci.png" alt="Aggiungi oggetto al catalogo" class="setup_icon" onclick="open_modal('view','Sigarette','le','okok)">
 
                 </div>
                 

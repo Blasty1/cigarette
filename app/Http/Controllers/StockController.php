@@ -10,31 +10,32 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xls; 
 class StockController extends Controller
 {
-    public function __construct(){
-
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
-
+    //ottengo da ogni categoria tutti i prodotti
+    static public function get_all_about_category($category){
+        
+        return (\App\Product::where('id_category',\App\Category::select('id')->where('name',$category)->get()[0]->id)->get());
+    }
     /* Impostazioni riguardanti l'intero ambiente del cliente */
 
     public function impostazione(){
-        
-        $categories=[
-            'sigarette',
-            'sigaretti',
-            'sigari',
-            'trinciati_sigarette',
-            'inalazione_senza_combustione'
-
-        ];
-        $test= new UpdatePrizeController;
-        $test->install_inventary();
-       //\Excel::import(new ProductImport,\storage_path().'/app/'.$categories[0].'.xls');
-
-        
+ 
             
-        return view('set');
+        return view('set',[
+            'sigarette_totali' => self::get_all_about_category('sigarette'),
+            'sigari_totali' => self::get_all_about_category('sigari'),
+            'sigaretti_totali' => self::get_all_about_category('sigaretti'),
+            'tabacco_totali' => self::get_all_about_category('trinciati_sigarette'),
+            'heets' => self::get_all_about_category('inalazione_senza_combustione')
+
+
+        ]);
         
     }
+    
 
     /**
      * Display a listing of the resource.

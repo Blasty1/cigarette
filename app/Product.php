@@ -18,7 +18,7 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsTo('App\Categories', 'id_category', 'id');
+        return $this->belongsTo('App\Category', 'id_category', 'id');
     }
 
     public function sells()

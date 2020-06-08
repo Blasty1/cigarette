@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Update_prize;
 use Illuminate\Http\Request;
+use App\Controllers\Imports;
 
 class UpdatePrizeController extends Controller
 {
@@ -107,21 +108,42 @@ class UpdatePrizeController extends Controller
             $file=$spreadsheet->getActiveSheet();
             $file->SetCellValue('A2','');
             $file->SetCellValue('B1','');
-            
-            for($x=1; $x < $file->getHighestRow(); $x++){
-                $CellA = $file->getCell('A' . $x)->getValue();
-                if(!$CellA){
-                    $test1[]= $x;
-                                                }
-
-            }
+        
+         
             $file->removeRow(1);
+            
 
             
             
 
             $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
             $writer->save($path_file);
+
+            return $file;
+
+        }
+
+        //Ottengo le generalità di ogni prodotto dal catalogo, per mezzo di un file xls 
+        function retrieve_data($file_to_use,$category){
+            $id_category= \App\Category::select('id')->where('name',$category)->get();
+            for($x=0;$x <= $file_to_use->getHighestRow(); $x++){
+                $codice=$file_to_use->getCell('B'.$x)->getValue();
+                $name=$file_to_use->getCell('C'.$x)->getValue();
+                $prezzo=(double)($file_to_use->getCell('E'.$x)->getValue());
+                $quantità=(int)(preg_replace('/[^0-9]/', '', $file_to_use->getCell('F'.$x)->getValue()));
+                
+                if( is_int($codice) && is_string($name) && is_double($prezzo) && is_int($quantità) && $id_category){
+                     $data_to_import[]=[
+                        'codice' => $codice,
+                        'name' => $name,
+                        'prezzo' => $prezzo,
+                        'Grammi/Pezzi' => $quantità,
+                        'id_category' => $id_category[0]->id,
+                        'img' => 'okoko'
+                    ];
+                }
+            }
+            return $data_to_import;
 
         }
 
@@ -158,8 +180,12 @@ class UpdatePrizeController extends Controller
             
             fclose($file_local);
         
-            get_file($path);
-
+            $array_to_insert=retrieve_data(get_file($path),$categories[$i]);
+            if(!empty($array_to_insert)){
+                \App\Product::insert($array_to_insert);
+            }
+            
+            
             
             
         
