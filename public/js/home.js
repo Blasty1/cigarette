@@ -36,11 +36,11 @@ function open_modal(add_or_view, category,the_or_an,files_to_view){
     
     
     
-    create_structure_table();
+    table_created=create_structure_table();
     if(add_or_view === 'add'){
         title_old_modal.textContent='Aggiungi '+the_or_an+' '+category+' al tuo catalogo';
         for(let test of files_to_view){
-           
+        add_items(test , table_created);
 
         }
 
@@ -58,7 +58,7 @@ function open_modal(add_or_view, category,the_or_an,files_to_view){
         table.className="tabella_prodotti";
         main_records.appendChild(table)
 
-        let ths_title=['Immagine','Codice','Nome','Categoria','Prezzo','Pezzi/Grammi' , 'Ottieni/Rimuovi']
+        let ths_title=['Immagine','Codice','Nome','Categoria','Prezzo', 'Ottieni/Rimuovi']
         let tr1=document.createElement('tr');
         table.appendChild(tr1);
 
@@ -67,5 +67,30 @@ function open_modal(add_or_view, category,the_or_an,files_to_view){
             ths.appendChild(document.createTextNode(th_title))
             tr1.appendChild(ths);
         }
+
+        return table;
+    }
+
+    function add_items(item,object_principale){
+        let capo_riga=document.createElement('tr');
+        object_principale.appendChild(capo_riga);
+     
+        for(let key in item){
+        
+            let row=document.createElement('td');
+            
+            if(key == 'id_category'){
+                
+                row.appendChild(document.createTextNode(item['categories']['name']));
+            
+            }else if(key == 'categories') {
+                
+            }else{
+                row.appendChild(document.createTextNode(item[key]));
+            }
+            capo_riga.appendChild(row);
+        }
+
+
     }
 }

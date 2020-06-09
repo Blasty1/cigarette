@@ -108,6 +108,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
    
 }
 .title{
@@ -123,17 +124,24 @@
 
 .tabella_prodotti{
     color: black;
-    
-
+    text-align: center;
+    border-collapse: collapse;
     width: 100%;
 }
-
+.tabella_prodotti tr{
+    height: 5vh;
+    
+}
 .tabella_prodotti th{
     
     padding: 1.5em;
     padding-bottom:0.5em;
-    border-bottom: 1px solid black;
+
 }
+tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
 
 @media screen and (max-width: 1024px){
     .box{

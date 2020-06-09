@@ -34,6 +34,7 @@
 }
 
 .header-title {
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -71,7 +72,7 @@
   height: 35%;
   border-radius: 0 20px 20px 0;
   padding: 1em;
-  padding-left: 4.5%;
+  padding-left: 3em;
   background-image: url("https://i.ibb.co/0yL2RKF/search.png");
   background-repeat: no-repeat;
   background-position: 1% 50%;
@@ -259,13 +260,22 @@
 
 .tabella_prodotti {
   color: black;
+  text-align: center;
+  border-collapse: collapse;
   width: 100%;
+}
+
+.tabella_prodotti tr {
+  height: 5vh;
 }
 
 .tabella_prodotti th {
   padding: 1.5em;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid black;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 
 @media screen and (max-width: 1024px) {

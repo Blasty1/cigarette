@@ -14,22 +14,38 @@ class StockController extends Controller
     {
         $this->middleware('auth');
     }
-    //ottengo da ogni categoria tutti i prodotti
-    static public function get_all_about_category($category){
+
+    //ottengo tutte le sigarette, sigari, sigaretti e heets
+    static public function get_all_about_fit(){
         
-        return (\App\Product::where('id_category',\App\Category::select('id')->where('name',$category)->get()[0]->id)->get());
+
+        //ottengo le categorie di cui necessito
+        $categories=\App\Category::select('id')
+                                    ->orwhere('name','sigarette')
+                                    ->orwhere('name','sigari')
+                                    ->orwhere('name','sigaretti')
+                                    ->orwhere('name','trinciati_sigarette')
+                                    ->orwhere('name','inalazione_senza_combustione')
+                                    ->get();
+        //ottengo gli id delle categorie
+        foreach($categories as $id){
+            $category_id[]=$id->id;
+        }
+
+        return \App\Product::select('img','codice','products.name','id_category','prezzo')->whereIn('id_category',$category_id)->with('categories')->get();
+        
+
+
+        
     }
+                                    
     /* Impostazioni riguardanti l'intero ambiente del cliente */
 
     public function impostazione(){
- 
-            
+        
+        
         return view('set',[
-            'sigarette_totali' => self::get_all_about_category('sigarette'),
-            'sigari_totali' => self::get_all_about_category('sigari'),
-            'sigaretti_totali' => self::get_all_about_category('sigaretti'),
-            'tabacco_totali' => self::get_all_about_category('trinciati_sigarette'),
-            'heets' => self::get_all_about_category('inalazione_senza_combustione')
+            'prodotti_casella_1' =>  self::get_all_about_fit(),
 
 
         ]);

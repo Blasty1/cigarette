@@ -11,7 +11,7 @@
         <div class="header-title">
             <h1 class="form-title"></h1>
             <div class="search">
-            <input type="text" name="value">
+            <input type="text" name="value" placeholder="Merit Gialla oppure #2656">
         </div>
             <div class="close">
                 <button onclick='close_modal()'>&times</button>
@@ -35,7 +35,7 @@
                             Sigarette che hai in tabaccheria
                     </h2>
                     
-                    <img src="/img/plus.png" alt="Aggiungi oggetto al catalogo" class="setup_icon" onclick="open_modal('add','Sigarette','le',{{json_encode($sigarette_totali)}})">
+                    <img src="/img/plus.png" alt="Aggiungi oggetto al catalogo" class="setup_icon" onclick="open_modal('add','Sigarette','le',{{json_encode($prodotti_casella_1)}})">
                     <img src="/img/ingrandisci.png" alt="Aggiungi oggetto al catalogo" class="setup_icon" onclick="open_modal('view','Sigarette','le','okok)">
 
                 </div>
