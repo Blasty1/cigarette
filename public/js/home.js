@@ -33,14 +33,19 @@ function open_modal(add_or_view, category,the_or_an,files_to_view){
  
     let title_new_modal = document.querySelector('.title').textContent;
     let title_old_modal = document.querySelector('.form-title');
-    
+    const input_search= document.querySelector('.search');
+
+    input_search.addEventListener('input',search_somethings)
+
     
     
     table_created=create_structure_table();
+    
     if(add_or_view === 'add'){
         title_old_modal.textContent='Aggiungi '+the_or_an+' '+category+' al tuo catalogo';
-        for(let test of files_to_view){
-        add_items(test , table_created);
+        for(let test of files_to_view)
+        {
+            add_items(test , table_created);
 
         }
 
@@ -50,6 +55,10 @@ function open_modal(add_or_view, category,the_or_an,files_to_view){
 
     }
 
+    function search_somethings(doc){
+        console.log(doc.target.value);
+
+    }
 
     function create_structure_table(){
         //creo la tabella principale
@@ -93,4 +102,6 @@ function open_modal(add_or_view, category,the_or_an,files_to_view){
 
 
     }
+
+    
 }

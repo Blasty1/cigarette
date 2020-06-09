@@ -42,7 +42,7 @@ class StockController extends Controller
     /* Impostazioni riguardanti l'intero ambiente del cliente */
 
     public function impostazione(){
-        
+     
         
         return view('set',[
             'prodotti_casella_1' =>  self::get_all_about_fit(),
