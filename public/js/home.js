@@ -35,11 +35,12 @@ function open_modal(add_or_view, category,the_or_an,files_to_view){
     let title_old_modal = document.querySelector('.form-title');
     const input_search= document.querySelector('.search');
 
-    input_search.addEventListener('input',search_somethings)
 
     
     
     table_created=create_structure_table();
+
+    
     
     if(add_or_view === 'add'){
         title_old_modal.textContent='Aggiungi '+the_or_an+' '+category+' al tuo catalogo';
@@ -54,9 +55,50 @@ function open_modal(add_or_view, category,the_or_an,files_to_view){
         title_old_modal.textContent='Vedi '+the_or_an+' '+category+' del tuo catalogo';
 
     }
+    input_search.addEventListener('input',myFunction)
 
-    function search_somethings(doc){
-        console.log(doc.target.value);
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById(".search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById(".tabella_prodotti");
+        tr = table.getElementsByTagName("tr");
+      
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[2];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+
+    function search_somethings(input_obj){
+        let table=document.querySelector('.tabella_prodotti');
+        let tr=table.getElementsByTagName('tr');
+    
+        
+        for(let i=0; i < tr.length; i++){
+            text_to_search=input_obj.target.value;
+            let tr_singolo=tr[i]
+            
+            if(text_to_search[0] === '#'){
+                let td_number=tr_singolo.getElementsByTagName('td')[1].textContent
+                console.log(td_number)
+            }else{
+                let td_string=tr_singolo.getElementsByTagName("td")[2]
+                console.log(td_string.innerText)
+               
+            }
+            
+            
+        }
 
     }
 

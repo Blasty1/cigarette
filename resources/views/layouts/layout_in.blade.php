@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="/css/style_in.css">
     <link rel="stylesheet" href="/css/modal.css">
 
-    <script src="/js/home.js"></script>
+  
 </head>
 <body>
     @yield('content')
 </body>
+<script src="/js/home.js"></script>
 </html>
