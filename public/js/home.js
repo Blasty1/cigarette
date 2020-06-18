@@ -55,47 +55,31 @@ function open_modal(add_or_view, category,the_or_an,files_to_view){
         title_old_modal.textContent='Vedi '+the_or_an+' '+category+' del tuo catalogo';
 
     }
-    input_search.addEventListener('input',myFunction)
+    input_search.addEventListener('input',search_somethings)
 
-    function myFunction() {
-        // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById(".search");
-        filter = input.value.toUpperCase();
-        table = document.getElementById(".tabella_prodotti");
-        tr = table.getElementsByTagName("tr");
-      
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[2];
-          if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-            } else {
-              tr[i].style.display = "none";
-            }
-          }
-        }
-      }
 
     function search_somethings(input_obj){
-        let table=document.querySelector('.tabella_prodotti');
+        const table=document.querySelector('.tabella_prodotti');
         let tr=table.getElementsByTagName('tr');
-    
+        let text_to_search=input_obj.target.value
+        let max=tr.length
         
-        for(let i=0; i < tr.length; i++){
-            text_to_search=input_obj.target.value;
-            let tr_singolo=tr[i]
+        for(let i=1; i < max; i++){
             
+            let riga=table.rows[i]
+            let codiceByInput=text_to_search.replace('#','').toLowerCase()
+            
+            let tdWhereSearch 
             if(text_to_search[0] === '#'){
-                let td_number=tr_singolo.getElementsByTagName('td')[1].textContent
-                console.log(td_number)
+                 tdWhereSearch = riga.cells[1]
+            
             }else{
-                let td_string=tr_singolo.getElementsByTagName("td")[2]
-                console.log(td_string.innerText)
+                 tdWhereSearch =riga.cells[2]
                
             }
+            
+            riga.style.display='none'
+            if(tdWhereSearch.innerHTML.indexOf(codiceByInput) !== -1)  riga.style.display='';
             
             
         }
@@ -124,24 +108,34 @@ function open_modal(add_or_view, category,the_or_an,files_to_view){
 
     function add_items(item,object_principale){
         let capo_riga=document.createElement('tr');
+    
         object_principale.appendChild(capo_riga);
+       
      
         for(let key in item){
         
             let row=document.createElement('td');
             
             if(key == 'id_category'){
-                
+               
                 row.appendChild(document.createTextNode(item['categories']['name']));
             
             }else if(key == 'categories') {
                 
+                
+            
+            }else if(key == 'name'){
+
+                row.appendChild(document.createTextNode(item[key].toLowerCase()))
+
             }else{
                 row.appendChild(document.createTextNode(item[key]));
             }
+            
             capo_riga.appendChild(row);
+           
         }
-
+        
 
     }
 

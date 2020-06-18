@@ -2,10 +2,15 @@
 
 
 @section('content')
+@include('set')
 <link
   rel="stylesheet"
   href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
 />
+<script>
+let all_fit={!! json_encode($prodotti_casella_1,JSON_HEX_TAG) !!}
+console.log(all_fit)
+</script>
 <div class="modal" style="display:none">
     <div class="alert-div">
         <div class="header-title">
@@ -35,7 +40,7 @@
                             Sigarette che hai in tabaccheria
                     </h2>
                     
-                    <img src="/img/plus.png" alt="Aggiungi oggetto al catalogo" class="setup_icon" onclick="open_modal('add','Sigarette','le',{{json_encode($prodotti_casella_1)}})">
+                    <img src="/img/plus.png" alt="Aggiungi oggetto al catalogo" class="setup_icon" onclick="open_modal('add','Sigarette','le')">
                     <img src="/img/ingrandisci.png" alt="Aggiungi oggetto al catalogo" class="setup_icon" onclick="open_modal('view','Sigarette','le','okok)">
 
                 </div>

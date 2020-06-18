@@ -6,6 +6,7 @@ use App\Stock;
 use Illuminate\Http\Request;
 use App\Imports\ProductImport;
 
+use Javascript;
 use PhpOffice\PhpSpreadsheet\Spreadsheet; 
 use PhpOffice\PhpSpreadsheet\Writer\Xls; 
 class StockController extends Controller
@@ -42,7 +43,12 @@ class StockController extends Controller
     /* Impostazioni riguardanti l'intero ambiente del cliente */
 
     public function impostazione(){
-     
+        Javascript::put(
+            [   
+                'test' => json_encode(self::get_all_about_fit())
+
+            ]
+            );
         
         return view('set',[
             'prodotti_casella_1' =>  self::get_all_about_fit(),
