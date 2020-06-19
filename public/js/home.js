@@ -22,7 +22,7 @@ function close_modal(){
     
 }
 
-function open_modal(add_or_view, category,the_or_an,files_to_view){
+function open_modal(add_or_view, category,the_or_an,files_to_view='null'){
     // open mod
     let mod=document.querySelector('.modal');
     mod.style.display= 'block';
