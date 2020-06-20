@@ -21,12 +21,27 @@ function close_modal(){
 
     
 }
+function requestDataAjax(url,functionToDo1){
+    let http= new XMLHttpRequest()
+    http.onreadystatechange=function(){
+        if(http.readyState === 4 && http.status === 200){
+            console.log('ok')
+             functionToDo1(this.responseText)
+        }
+        
 
-function open_modal(add_or_view, category,the_or_an,files_to_view='null'){
+    }
+    http.open('GET',url);
+    
+    http.send()
+}
+
+
+function open_modal(add_or_view, category,the_or_an,url){
+   
     // open mod
     let mod=document.querySelector('.modal');
     mod.style.display= 'block';
-    
     
     
     let main_section=document.querySelector('.alert-div');
@@ -34,7 +49,7 @@ function open_modal(add_or_view, category,the_or_an,files_to_view='null'){
     let title_new_modal = document.querySelector('.title').textContent;
     let title_old_modal = document.querySelector('.form-title');
     const input_search= document.querySelector('.search');
-
+    
 
     
     
@@ -42,22 +57,13 @@ function open_modal(add_or_view, category,the_or_an,files_to_view='null'){
 
     
     
-    if(add_or_view === 'add'){
-        title_old_modal.textContent='Aggiungi '+the_or_an+' '+category+' al tuo catalogo';
-        for(let test of files_to_view)
-        {
-            add_items(test , table_created);
+    requestDataAjax(url,printData)
 
-        }
-
-
-    }else if(add_or_view === 'view'){
-        title_old_modal.textContent='Vedi '+the_or_an+' '+category+' del tuo catalogo';
-
-    }
     input_search.addEventListener('input',search_somethings)
 
 
+
+    //function used
     function search_somethings(input_obj){
         const table=document.querySelector('.tabella_prodotti');
         let tr=table.getElementsByTagName('tr');
@@ -106,7 +112,7 @@ function open_modal(add_or_view, category,the_or_an,files_to_view='null'){
         return table;
     }
 
-    function add_items(item,object_principale){
+    function add_items(item,object_principale,datas){
         let capo_riga=document.createElement('tr');
     
         object_principale.appendChild(capo_riga);
@@ -139,5 +145,21 @@ function open_modal(add_or_view, category,the_or_an,files_to_view='null'){
 
     }
 
+    function printData(datas){
+        console.log(datas)
+        if(add_or_view === 'add'){
+            title_old_modal.textContent='Aggiungi '+the_or_an+' '+category+' al tuo catalogo';
+             for(let test of datas)
+             {
+                 add_items(test , table_created);
+    
+             }
+    
+    
+             }else if(add_or_view === 'view'){
+             title_old_modal.textContent='Vedi '+the_or_an+' '+category+' del tuo catalogo';
+    
+         }
+    }
     
 }

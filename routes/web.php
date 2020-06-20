@@ -32,3 +32,5 @@ Route::get('/contabilità','HomeController@index')->name('contabilita');
 Route::get('/impostazioni','StockController@impostazione')->name('impostazioni');
 Route::get('/cassa','HomeController@index')->name('cassa');
 
+Route::get('/retrieveData/{id}','AjaxController@retrieve_dataJS')->name('retrieve_dataJS');
+
